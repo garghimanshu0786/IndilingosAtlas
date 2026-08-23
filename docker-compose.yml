@@ -1,0 +1,14 @@
+services:
+  atlas:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      HOSTNAME: 0.0.0.0
+      PORT: "3000"
+      INDILINGO_API_URL: ${INDILINGO_API_URL}
+      INDILINGO_API_KEY: ${INDILINGO_API_KEY:-}
+    restart: unless-stopped

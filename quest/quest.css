@@ -1,0 +1,259 @@
+.quest-pick,
+.quest-street {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  color: #141414;
+  background: #7ed0c0;
+}
+
+.quest-mark {
+  margin: 0;
+  padding: 12vh 24px 0;
+  text-align: center;
+  font-family: var(--font-archivo), sans-serif;
+  font-size: clamp(48px, 12vw, 120px);
+  line-height: 0.85;
+}
+
+.quest-tag,
+.quest-foot,
+.quest-warn {
+  max-width: 640px;
+  margin: 16px auto 0;
+  padding: 0 24px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.quest-warn {
+  color: #6a1b12;
+  background: #ffd23f;
+  border: 3px solid #141414;
+  padding: 12px 16px;
+}
+
+.quest-warn code {
+  font-size: 13px;
+}
+
+.quest-cities {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 36px;
+  padding: 0 20px;
+}
+
+.quest-city-btn,
+.quest-btn {
+  min-height: 72px;
+  min-width: 160px;
+  border: 3px solid #141414;
+  background: #ffd23f;
+  box-shadow: 4px 4px 0 #141414;
+  font-family: var(--font-archivo), sans-serif;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.quest-city-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 28px;
+}
+
+.quest-city-btn small {
+  margin-top: 6px;
+  font-family: var(--font-zen), sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.quest-btn.ghost {
+  background: #fbf9f2;
+}
+
+.quest-btn:disabled {
+  opacity: 0.5;
+}
+
+.quest-street {
+  background: #000;
+  color: #fff;
+}
+
+/* Immersive session draws the street as a viewer-locked FOV layer — hide panel chrome. */
+.quest-street.is-vr .quest-status,
+.quest-street.is-vr .quest-city,
+.quest-street.is-vr .quest-sub,
+.quest-street.is-vr .quest-actions,
+.quest-street.is-vr .quest-stick,
+.quest-street.is-vr .quest-debug {
+  display: none;
+}
+
+.quest-video,
+.quest-seed {
+  position: absolute;
+  inset: 0;
+}
+
+.quest-status,
+.quest-city {
+  position: absolute;
+  z-index: 3;
+  font-family: var(--font-press), monospace;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+
+.quest-status {
+  top: 16px;
+  right: 16px;
+}
+
+.quest-city {
+  top: 16px;
+  left: 16px;
+}
+
+.quest-sub {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 28px;
+  width: min(720px, calc(100% - 200px));
+  transform: translateX(-50%);
+  border: 3px solid #141414;
+  background: #fbf9f2;
+  color: #141414;
+  padding: 12px 16px 14px;
+  box-shadow: 4px 4px 0 #141414;
+}
+
+.quest-who {
+  margin: 0;
+  font-family: var(--font-press), monospace;
+  font-size: 8px;
+}
+
+.quest-line {
+  margin: 6px 0 0;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.quest-cue {
+  margin: 8px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.quest-actions {
+  position: absolute;
+  z-index: 4;
+  top: 12px;
+  left: 50%;
+  display: flex;
+  gap: 10px;
+  transform: translateX(-50%);
+}
+
+.quest-actions .quest-btn {
+  min-height: 56px;
+  min-width: 88px;
+  font-size: 16px;
+}
+
+.quest-stick {
+  position: absolute;
+  z-index: 4;
+  left: 28px;
+  bottom: 28px;
+  width: 128px;
+  height: 128px;
+  border: 3px solid #141414;
+  border-radius: 999px;
+  background: rgb(251 249 242 / 0.85);
+  box-shadow: 4px 4px 0 #141414;
+  touch-action: none;
+}
+
+.quest-stick.live {
+  box-shadow: 4px 4px 0 #141414, 0 0 0 3px #f5c400;
+}
+
+.quest-street.is-vr .quest-stick {
+  display: none;
+}
+
+.quest-stick i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 42px;
+  height: 42px;
+  margin: -21px 0 0 -21px;
+  border-radius: 999px;
+  background: #141414;
+}
+
+.quest-debug {
+  position: absolute;
+  z-index: 8;
+  right: 12px;
+  bottom: 12px;
+  max-width: min(420px, calc(100% - 180px));
+  font-family: var(--font-press), monospace;
+  font-size: 9px;
+  line-height: 1.35;
+  color: #fbf9f2;
+  pointer-events: auto;
+}
+
+.quest-debug-toggle {
+  border: 2px solid #141414;
+  background: rgb(20 20 20 / 0.82);
+  color: #ffd23f;
+  padding: 4px 8px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.quest-debug-body {
+  margin-top: 6px;
+  max-height: 34vh;
+  overflow: auto;
+  border: 2px solid #141414;
+  background: rgb(20 20 20 / 0.88);
+  padding: 8px 10px;
+}
+
+.quest-debug-body p {
+  margin: 0 0 6px;
+}
+
+.quest-debug-err {
+  color: #ffb4a8;
+}
+
+.quest-debug-body ol {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.quest-debug-body li {
+  margin: 0 0 4px;
+  word-break: break-word;
+}
+
+.quest-debug-body span {
+  opacity: 0.65;
+  margin-right: 6px;
+}

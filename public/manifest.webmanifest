@@ -1,0 +1,25 @@
+{
+  "name": "Indilingo Quest",
+  "short_name": "Indilingo",
+  "description": "Live language streets on Meta Quest — Delhi Hindi, Tokyo Japanese.",
+  "start_url": "/quest",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#7ed0c0",
+  "theme_color": "#7ed0c0",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}

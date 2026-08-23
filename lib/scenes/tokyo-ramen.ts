@@ -1,0 +1,240 @@
+import type { Scene } from "./types";
+
+export const tokyoRamen: Scene = {
+  id: "tokyo-ramen",
+  city: "Tokyo",
+  speaker: "KENJI",
+  language: "Japanese",
+  locale: "ja-JP",
+  nativeTitle: "深夜ラーメン",
+  deckLine: "Alley yatai. Order a bowl.",
+  seedImage: "/scenes/tokyo-street.jpg",
+  font: "jp",
+  identity: [
+    "AAA photoreal open-world night, Grand Theft Auto cinematic, Unreal Engine 5, 35mm anamorphic, Tokyo alley.",
+    "Camera is third-person in the cobbled alley, wide 24mm, the ALLEY is the subject, vanishing toward a neon avenue. Do not crop to a face. Do not make a portrait.",
+    "Near: wet cobbles, rain streaks, puddles, a bicycle wheel.",
+    "Mid: a wooden ramen yatai on the left under a faded red noren, red paper lantern, one chef in a white headband and indigo jacket, mid-ground, small in frame.",
+    "Far: the alley opens onto a wet avenue of headlights, neon, pedestrians, towers with lit windows.",
+    "Light: warm tungsten and red lantern in the stall, cool neon and taillights in the distance, rain catching both.",
+  ].join(" "),
+  beats: {
+    idle: "Wide living alley. The chef works the yatai in mid-ground. Rain, lantern, traffic on the avenue beyond. Continuous handheld sway.",
+    welcome:
+      "The chef nods a short irasshaimase, a slight bow, warmer tungsten light on his face, steam rising from the pot.",
+    confused:
+      "The chef leans in, head tilted, not following. A second customer waits under the lantern. He asks the guest to say it again, slowly.",
+    almost:
+      "The chef gives a small unsure nod, ladle in hand, waiting for a clearer order. Polite, not yet pouring.",
+    served:
+      "The chef slides a steaming bowl of tonkotsu ramen across the wood in one practiced motion, chashu catching the light, heavy broth steam.",
+    extra:
+      "The chef adds a spoon of chili oil and extra nori, a quiet satisfied look, the bowl darker and richer.",
+    paid: "The chef takes a few coins into a wooden saucer, nods, the lantern glowing, another bowl steaming on the bar.",
+    impatient:
+      "Three people now wait under the noren. The chef glances at a wall clock, rain heavier, still polite, waiting.",
+    complete:
+      "The chef gives a small bow, the alley quiet, lantern warm, the empty bowl on the counter, rain softening.",
+  },
+  opening: {
+    native: "いらっしゃい。何にしますか？",
+    roman: "Irasshai. Nani ni shimasu ka?",
+  },
+  heritage: {
+    title: "Yatai ramen",
+    native: "屋台ラーメン",
+    body: "A yatai is a one-person stall on the street. Irasshaimase is not a greeting you return — it is the shop opening the door. You answer with the bowl you want.",
+  },
+  impatient: {
+    native: "少々混んでます。もう一度、短くどうぞ。",
+    roman: "Shoushou konde masu. Mou ichido, mijikaku douzo.",
+  },
+  claude: {
+    npc: "You are a Tokyo ramen chef at a night yatai. Spare with words, polite, busy. Speak Japanese.",
+    replyShape: "one short Japanese sentence in kanji/kana",
+  },
+  steps: [
+    {
+      id: "greet",
+      goal: "Get his attention",
+      tryLine: "Sumimasen",
+      tryNative: "すみません",
+      successOutcome: "welcome",
+      rightAny: [
+        "sumimasen",
+        "sumimasen",
+        "すみません",
+        "すいません",
+        "konnichiwa",
+        "konichiwa",
+        "こんにちは",
+        "こんばんは",
+        "konbanwa",
+      ],
+      almostAny: ["hello", "hi", "hey", "excuse me", "irasshaimase"],
+      replies: {
+        right: {
+          native: "はい。何にしますか？",
+          roman: "Hai. Nani ni shimasu ka?",
+          hint: "Order a ramen. “Ramen kudasai.”",
+        },
+        almost: {
+          native: "日本語でどうぞ。すみません、でいいです。",
+          roman: "Nihongo de douzo. Sumimasen, de ii desu.",
+          hint: "Try “Sumimasen” — that’s the door.",
+        },
+        wrong: {
+          native: "はい？もう一度お願いします。",
+          roman: "Hai? Mou ichido onegai shimasu.",
+          hint: "A greeting first. “Sumimasen” is enough.",
+        },
+      },
+    },
+    {
+      id: "order",
+      goal: "Order ramen",
+      tryLine: "Ramen kudasai",
+      tryNative: "ラーメンください",
+      successOutcome: "served",
+      rightAny: ["ramen", "raamen", "ramen", "ラーメン", "らーめん", "拉麺"],
+      rightAlso: [
+        "kudasai",
+        "kudasai",
+        "ください",
+        "onegaishimasu",
+        "onegai",
+        "お願いします",
+        "hitotsu",
+        "一つ",
+        "ひとつ",
+        "one",
+        "please",
+      ],
+      almostAny: ["ramen", "ラーメン", "らーめん", "noodle", "noodles"],
+      replies: {
+        right: {
+          native: "とんこつでいいですか。辛くしますか？",
+          roman: "Tonkotsu de ii desu ka. Karaku shimasu ka?",
+          hint: "Make it yours — “Karai no de.” or “Tonkotsu.”",
+        },
+        almost: {
+          native: "ラーメン、ですね。ください、まで言ってください。",
+          roman: "Ramen, desu ne. Kudasai, made itte kudasai.",
+          hint: "Ask for it: “Ramen kudasai.”",
+        },
+        wrong: {
+          native: "メニューはラーメンだけです。",
+          roman: "Menu wa ramen dake desu.",
+          hint: "Order the bowl. “Ramen kudasai.”",
+        },
+      },
+    },
+    {
+      id: "specify",
+      goal: "Make it yours",
+      tryLine: "Karai no de",
+      tryNative: "辛いので",
+      successOutcome: "extra",
+      rightAny: [
+        "karai",
+        "karaku",
+        "spicy",
+        "tonkotsu",
+        "shoyu",
+        "shoyu",
+        "miso",
+        "nori",
+        "辛い",
+        "からい",
+        "とんこつ",
+        "豚骨",
+        "醤油",
+        "しょうゆ",
+        "味噌",
+        "みそ",
+      ],
+      almostAny: ["hot", "extra", "large", "ooki", "大きい", "普通", "futsuu"],
+      replies: {
+        right: {
+          native: "辛め、了解です。",
+          roman: "Karame, ryoukai desu.",
+          hint: "Ask the price — “Ikura desu ka?”",
+        },
+        almost: {
+          native: "普通で出します。辛さ、言ってください。",
+          roman: "Futsuu de dashimasu. Karasa, itte kudasai.",
+          hint: "Say “karai” or “tonkotsu.”",
+        },
+        wrong: {
+          native: "味、どれにしますか。とんこつ、醤油、味噌。",
+          roman: "Aji, dore ni shimasu ka. Tonkotsu, shoyu, miso.",
+          hint: "Pick a style: tonkotsu, shoyu, or karai.",
+        },
+      },
+    },
+    {
+      id: "price",
+      goal: "Ask the price",
+      tryLine: "Ikura desu ka?",
+      tryNative: "いくらですか？",
+      successOutcome: "paid",
+      rightAny: ["ikura", "いくら", "price", "how much", "yen", "en", "円"],
+      almostAny: ["bill", "check", "okaikei", "お会計", "会計", "pay"],
+      replies: {
+        right: {
+          native: "九百円です。熱いので気をつけて。",
+          roman: "Kyuuhyaku en desu. Atsui node ki o tsukete.",
+          hint: "Close with thanks — “Arigatou.”",
+        },
+        almost: {
+          native: "お会計の前に、いくらですか、で聞いてください。",
+          roman: "Okaikei no mae ni, ikura desu ka, de kiite kudasai.",
+          hint: "Ask “Ikura desu ka?”",
+        },
+        wrong: {
+          native: "値段、ですか？いくらですか、でどうぞ。",
+          roman: "Nedan, desu ka? Ikura desu ka, de douzo.",
+          hint: "Ask “Ikura desu ka?”",
+        },
+      },
+    },
+    {
+      id: "thanks",
+      goal: "Thank him",
+      tryLine: "Arigatou",
+      tryNative: "ありがとう",
+      successOutcome: "complete",
+      rightAny: [
+        "arigatou",
+        "arigato",
+        "arigatoo",
+        "thanks",
+        "thank you",
+        "ありがとう",
+        "ありがとうございます",
+        "gochisousama",
+        "gochisosama",
+        "ごちそうさま",
+        "ごちそうさまでした",
+      ],
+      almostAny: ["bye", "ok", "okay", "sayonara", "さようなら"],
+      replies: {
+        right: {
+          native: "また来てください。",
+          roman: "Mata kite kudasai.",
+          hint: "That’s the loop. The alley remembers you.",
+        },
+        almost: {
+          native: "ありがとう、で十分です。",
+          roman: "Arigatou, de juubun desu.",
+          hint: "One word: “Arigatou.”",
+        },
+        wrong: {
+          native: "出る前に、一言。ありがとう。",
+          roman: "Deru mae ni, hitokoto. Arigatou.",
+          hint: "Thank him. “Arigatou” or “Gochisousama.”",
+        },
+      },
+    },
+  ],
+};
